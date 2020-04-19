@@ -1,0 +1,21 @@
+{
+  "@@last_modified": "2020-04-17T22:45:22.609240",
+  "title": "מיוטיוב",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorOccurred": "לצערנו, התרחשה בעיה טכנית.",
+  "@errorOccurred": {
+    "description": "An error has occurred",
+    "type": "text",
+    "placeholders": {}
+  },
+  "restartApp": "בבקשה הפעל מחדש את האפליקציה.",
+  "@restartApp": {
+    "description": "Restart the app",
+    "type": "text",
+    "placeholders": {}
+  }
+}

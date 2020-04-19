@@ -1,0 +1,37 @@
+{
+  "base": {
+    "googleMusicOAuth": {
+      "base": {
+        "authUrl": {
+          "authority": "accounts.google.com",
+          "path": "o/oauth2/v2/auth"
+        },
+        "redirectUri": "urn:ietf:wg:oauth:2.0:oob",
+        "accessType": "offline",
+        "responseType": "code",
+        "base": {
+          "authority": "oauth2.googleapis.com"
+        },
+        "revokeUrl": {
+          "path": "revoke"
+        },
+        "tokenUrl": {
+          "path": "token"
+        },
+        "tokenInfoUrl": {
+          "path": "tokeninfo"
+        }
+      },
+      "mobileClient": {
+        "clientId": "228293309116.apps.googleusercontent.com",
+        "clientSecret": "GL1YV0XMp0RlL7ylCV3ilFz-",
+        "scope": "https://www.googleapis.com/auth/skyjam"
+      },
+      "musicManager": {
+        "clientId": "652850857958.apps.googleusercontent.com",
+        "clientSecret": "ji1rklciNp2bfsFJnEH_i6al",
+        "scope": "https://www.googleapis.com/auth/musicmanager"
+      }
+    }
+  }
+}

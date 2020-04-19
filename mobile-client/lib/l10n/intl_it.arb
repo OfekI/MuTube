@@ -1,0 +1,21 @@
+{
+  "@@last_modified": "2020-04-17T22:45:22.609240",
+  "title": "MuTube",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorOccurred": "Purtroppo, c'è stato un errore.",
+  "@errorOccurred": {
+    "description": "An error has occurred",
+    "type": "text",
+    "placeholders": {}
+  },
+  "restartApp": "Per favore riavvia l'app.",
+  "@restartApp": {
+    "description": "Restart the app",
+    "type": "text",
+    "placeholders": {}
+  }
+}
