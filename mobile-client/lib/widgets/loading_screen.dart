@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mutube/services/services.dart';
 
-class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({Key key}) : super(key: key);
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,12 @@ class ErrorScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            Icons.error,
+            Icons.watch_later,
             color: Theme.of(context).textTheme.caption.color,
             size: 100,
           ),
           SizedBox(height: 15),
-          errorTextWidget(localizations.errorOccurred),
-          SizedBox(height: 15),
-          errorTextWidget(localizations.restartApp),
+          errorTextWidget(localizations.loading),
         ],
       ),
     );

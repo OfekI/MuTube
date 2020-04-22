@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mutube/services/services.dart';
-import 'package:mutube/widgets/error_screen.dart';
+import 'package:mutube/widgets/loading_screen.dart';
 
 void main() {
-  group('ErrorScreen', () {
+  group('LoadingScreen', () {
     testWidgets('displays informative text', (tester) async {
       await tester.pumpWidget(MaterialApp(
         supportedLocales: [Locale('en', 'US')],
         localizationsDelegates: [AppLocalizations.delegate],
-        home: ErrorScreen(),
+        home: LoadingScreen(),
       ));
 
       await tester.pump();
 
-      expect(find.byIcon(Icons.error), findsOneWidget);
-      expect(
-        find.text('Unfortunately, an error has occurred.'),
-        findsOneWidget,
-      );
-      expect(find.text('Please restart the app.'), findsOneWidget);
+      expect(find.byIcon(Icons.watch_later), findsOneWidget);
+      expect(find.text('Loading...'), findsOneWidget);
     });
     testWidgets('displays localized text', (tester) async {
       await tester.pumpWidget(MaterialApp(
@@ -29,14 +25,13 @@ void main() {
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
         ],
-        home: ErrorScreen(),
+        home: LoadingScreen(),
       ));
 
       await tester.pump();
 
-      expect(find.text('Unfortunately, an error has occurred.'), findsNothing);
-      expect(find.text('Purtroppo, c\'è stato un errore.'), findsOneWidget);
-      expect(find.text("Per favore riavvia l'app."), findsOneWidget);
+      expect(find.text('Loading...'), findsNothing);
+      expect(find.text('Caricamento in corso...'), findsOneWidget);
     });
   });
 }

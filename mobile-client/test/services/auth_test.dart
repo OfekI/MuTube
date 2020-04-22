@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:mutube/auth.dart';
-import 'package:mutube/config.dart';
+import 'package:mutube/services/services.dart';
 import 'package:mutube/models/models.dart';
 import 'package:optional/optional.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -83,7 +82,7 @@ void main() {
         final config = await configFuture;
         final mock = _MockDependency();
 
-        AuthService.obtainAccessCode(
+        AuthService().obtainAccessCode(
           config.googleMusicOAuth.mobileClient,
           launch: mock.launch,
         );
@@ -91,7 +90,7 @@ void main() {
           mock.launch(config.googleMusicOAuth.mobileClient.authUrl.toString()),
         ).called(1);
 
-        AuthService.obtainAccessCode(
+        AuthService().obtainAccessCode(
           config.googleMusicOAuth.musicManager,
           launch: mock.launch,
         );
@@ -115,7 +114,7 @@ void main() {
           body: anyNamed('body'),
         )).thenAnswer((_) async => response);
 
-        final credentials = await AuthService.getCredentials(
+        final credentials = await AuthService().getCredentials(
           config.googleMusicOAuth.mobileClient,
           'foo',
           post: mock.post,
@@ -135,7 +134,7 @@ void main() {
           body: anyNamed('body'),
         )).thenAnswer((_) async => response);
 
-        final credentials = await AuthService.getCredentials(
+        final credentials = await AuthService().getCredentials(
           config.googleMusicOAuth.mobileClient,
           'foo',
           post: mock.post,

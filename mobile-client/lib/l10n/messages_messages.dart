@@ -22,6 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "errorOccurred" : MessageLookupByLibrary.simpleMessage("Unfortunately, an error has occurred."),
+    "loading" : MessageLookupByLibrary.simpleMessage("Loading..."),
+    "mobileClientLoginStepButtonLabel" : MessageLookupByLibrary.simpleMessage("Obtain Mobile Client Access Code"),
+    "mobileClientLoginStepHintText" : MessageLookupByLibrary.simpleMessage("Paste your mobile client access code here"),
+    "mobileClientLoginStepSubtitle" : MessageLookupByLibrary.simpleMessage("Obtain and submit an access code for Google Play Music\'s mobile client."),
+    "mobileClientLoginStepTitle" : MessageLookupByLibrary.simpleMessage("Mobile Client Access Code"),
+    "musicManagerLoginStepButtonLabel" : MessageLookupByLibrary.simpleMessage("Obtain Music Manager Access Code"),
+    "musicManagerLoginStepHintText" : MessageLookupByLibrary.simpleMessage("Paste your music manager access code here"),
+    "musicManagerLoginStepSubtitle" : MessageLookupByLibrary.simpleMessage("Obtain and submit an access code for Google Play Music\'s music manager."),
+    "musicManagerLoginStepTitle" : MessageLookupByLibrary.simpleMessage("Music Manager Access Code"),
     "restartApp" : MessageLookupByLibrary.simpleMessage("Please restart the app."),
     "title" : MessageLookupByLibrary.simpleMessage("MuTube")
   };

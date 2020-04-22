@@ -17,5 +17,59 @@
     "description": "Restart the app",
     "type": "text",
     "placeholders": {}
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepTitle": "Mobile Client Access Code",
+  "@mobileClientLoginStepTitle": {
+    "description": "Title for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepSubtitle": "Obtain and submit an access code for Google Play Music's mobile client.",
+  "@mobileClientLoginStepSubtitle": {
+    "description": "Subtitle for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepButtonLabel": "Obtain Mobile Client Access Code",
+  "@mobileClientLoginStepButtonLabel": {
+    "description": "Button label for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepHintText": "Paste your mobile client access code here",
+  "@mobileClientLoginStepHintText": {
+    "description": "Hint text for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepTitle": "Music Manager Access Code",
+  "@musicManagerLoginStepTitle": {
+    "description": "Title for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepSubtitle": "Obtain and submit an access code for Google Play Music's music manager.",
+  "@musicManagerLoginStepSubtitle": {
+    "description": "Subtitle for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepButtonLabel": "Obtain Music Manager Access Code",
+  "@musicManagerLoginStepButtonLabel": {
+    "description": "Button label for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepHintText": "Paste your music manager access code here",
+  "@musicManagerLoginStepHintText": {
+    "description": "Hint text for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
   }
 }

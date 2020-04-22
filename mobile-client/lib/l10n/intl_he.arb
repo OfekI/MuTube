@@ -17,5 +17,59 @@
     "description": "Restart the app",
     "type": "text",
     "placeholders": {}
+  },
+  "loading": "טוען...",
+  "@loading": {
+    "description": "Loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepTitle": "קוד גישה ללקוח נייד",
+  "@mobileClientLoginStepTitle": {
+    "description": "Title for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepSubtitle": "השג ושלח קוד גישה ללקוח נייד של גוגל פליי מוזיקה.",
+  "@mobileClientLoginStepSubtitle": {
+    "description": "Subtitle for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepButtonLabel": "השג קוד גישה ללקוח נייד",
+  "@mobileClientLoginStepButtonLabel": {
+    "description": "Button label for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepHintText": "הדבק כאן את הקוד ללקוח נייד",
+  "@mobileClientLoginStepHintText": {
+    "description": "Hint text for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepTitle": "קוד גישה למנהל מוזיקה",
+  "@musicManagerLoginStepTitle": {
+    "description": "Title for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepSubtitle": "השג ושלח קוד גישה למנהל מוזיקה של גוגל פליי מוזיקה.",
+  "@musicManagerLoginStepSubtitle": {
+    "description": "Subtitle for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepButtonLabel": "השג קוד גישה למנהל מוזיקה",
+  "@musicManagerLoginStepButtonLabel": {
+    "description": "Button label for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepHintText": "הדבק כאן את הקוד למנהל מוזיקה",
+  "@musicManagerLoginStepHintText": {
+    "description": "Hint text for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
   }
 }

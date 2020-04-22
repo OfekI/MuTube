@@ -22,6 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "errorOccurred" : MessageLookupByLibrary.simpleMessage("לצערנו, התרחשה בעיה טכנית."),
+    "loading" : MessageLookupByLibrary.simpleMessage("טוען..."),
+    "mobileClientLoginStepButtonLabel" : MessageLookupByLibrary.simpleMessage("השג קוד גישה ללקוח נייד"),
+    "mobileClientLoginStepHintText" : MessageLookupByLibrary.simpleMessage("הדבק כאן את הקוד ללקוח נייד"),
+    "mobileClientLoginStepSubtitle" : MessageLookupByLibrary.simpleMessage("השג ושלח קוד גישה ללקוח נייד של גוגל פליי מוזיקה."),
+    "mobileClientLoginStepTitle" : MessageLookupByLibrary.simpleMessage("קוד גישה ללקוח נייד"),
+    "musicManagerLoginStepButtonLabel" : MessageLookupByLibrary.simpleMessage("השג קוד גישה למנהל מוזיקה"),
+    "musicManagerLoginStepHintText" : MessageLookupByLibrary.simpleMessage("הדבק כאן את הקוד למנהל מוזיקה"),
+    "musicManagerLoginStepSubtitle" : MessageLookupByLibrary.simpleMessage("השג ושלח קוד גישה למנהל מוזיקה של גוגל פליי מוזיקה."),
+    "musicManagerLoginStepTitle" : MessageLookupByLibrary.simpleMessage("קוד גישה למנהל מוזיקה"),
     "restartApp" : MessageLookupByLibrary.simpleMessage("בבקשה הפעל מחדש את האפליקציה."),
     "title" : MessageLookupByLibrary.simpleMessage("מיוטיוב")
   };

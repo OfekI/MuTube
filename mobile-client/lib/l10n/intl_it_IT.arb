@@ -17,5 +17,59 @@
     "description": "Restart the app",
     "type": "text",
     "placeholders": {}
+  },
+  "loading": "Caricamento in corso...",
+  "@loading": {
+    "description": "Loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepTitle": "Codice di accesso del client mobile",
+  "@mobileClientLoginStepTitle": {
+    "description": "Title for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepSubtitle": "Ottiene e invia un codice di accesso per il client mobile di Google Play Musica.",
+  "@mobileClientLoginStepSubtitle": {
+    "description": "Subtitle for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepButtonLabel": "Ottiene codice del client mobile",
+  "@mobileClientLoginStepButtonLabel": {
+    "description": "Button label for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobileClientLoginStepHintText": "Incolla il codice del client mobile qui",
+  "@mobileClientLoginStepHintText": {
+    "description": "Hint text for Mobile Client step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepTitle": "Codice di accesso del direttore di musica",
+  "@musicManagerLoginStepTitle": {
+    "description": "Title for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepSubtitle": "Ottiene e invia un codice di accesso per il direttore di musica di Google Play Musica.",
+  "@musicManagerLoginStepSubtitle": {
+    "description": "Subtitle for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepButtonLabel": "Ottiene codice del direttore di musica",
+  "@musicManagerLoginStepButtonLabel": {
+    "description": "Button label for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "musicManagerLoginStepHintText": "Incolla il codice del direttore di musica qui",
+  "@musicManagerLoginStepHintText": {
+    "description": "Hint text for Music Manager step of login flow",
+    "type": "text",
+    "placeholders": {}
   }
 }
