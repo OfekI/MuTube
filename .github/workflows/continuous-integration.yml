@@ -32,14 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Change into Flutter directory
+      - name: Set up Flutter
+        uses: takuyaohashi/setup-flutter@v1
+        with:
+          flutter-version: 'latest'
+          channel: 'stable'
+      # - name: Install dependencies
+      #   run: |
+      #     cd mobile-client
+      #     pub get
+      - name: Test
         run: |
           cd mobile-client
-      - name: Install dependencies
-        uses: steebchen/flutter@v1.0.0
-        with:
-          args: pub get
-      - name: Test
-        uses: steebchen/flutter@v1.0.0
-        with:
-          args: test
+          flutter test
