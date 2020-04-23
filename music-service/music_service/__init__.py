@@ -29,14 +29,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route("/hello")
-    def hello():
-        from .db import get_db
-
-        db = get_db()
-        return str(db.get_songs())
-
     db.init_app(app)
     app.add_url_rule(
         "/graphql",

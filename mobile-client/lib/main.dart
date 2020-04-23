@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mutube/services/services.dart';
-import 'package:mutube/widgets/mutube.dart';
+import 'package:mutube/widgets/widgets.dart';
 
 void main({String env}) async {
   WidgetsFlutterBinding.ensureInitialized();

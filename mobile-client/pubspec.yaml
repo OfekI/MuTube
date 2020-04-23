@@ -1,5 +1,5 @@
 name: mutube
-description: A new Flutter project.
+description: An application for connecting YouTube with Google Play Music.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -24,6 +24,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   equatable: ^1.1.1
+  graphql_flutter: ^3.0.1
   http: ^0.12.0
   optional: ^4.1.0
   provider: ^4.0.4

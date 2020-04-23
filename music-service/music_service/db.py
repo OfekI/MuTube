@@ -1,6 +1,9 @@
+import json
 from os import path
+
 import gmusicapi
-from flask import current_app, g
+import oauth2client
+from flask import current_app, g, request
 
 
 class GoogleMusicDatabase:
@@ -22,25 +25,7 @@ class GoogleMusicDatabase:
         self.mobile_client = gmusicapi.Mobileclient()
         self.music_manager = gmusicapi.Musicmanager()
 
-        self._store_credentials()
         self._login()
-
-    def _store_credentials(self):
-        if self.mobile_credentials is not None:
-            if not path.exists(self.mobile_credentials):
-                gmusicapi.Mobileclient.perform_oauth(
-                    storage_filepath=self.mobile_credentials
-                )
-        elif not path.exists(gmusicapi.Mobileclient.OAUTH_FILEPATH):
-            gmusicapi.Mobileclient.perform_oauth()
-
-        if self.manager_credentials is not None:
-            if not path.exists(self.manager_credentials):
-                gmusicapi.Musicmanager.perform_oauth(
-                    storage_filepath=self.manager_credentials
-                )
-        elif not path.exists(gmusicapi.Musicmanager.OAUTH_FILEPATH):
-            gmusicapi.Musicmanager.perform_oauth()
 
     def _login(self):
         if self.mobile_credentials is not None:
@@ -48,8 +33,6 @@ class GoogleMusicDatabase:
                 self.mobile_client.oauth_login(
                     self.device_id, oauth_credentials=self.mobile_credentials
                 )
-        elif not self.mobile_client.is_authenticated():
-            self.mobile_client.oauth_login(self.device_id)
 
         if self.manager_credentials is not None:
             if not self.music_manager.is_authenticated():
@@ -58,10 +41,6 @@ class GoogleMusicDatabase:
                     uploader_name=self.uploader_name,
                     oauth_credentials=self.manager_credentials,
                 )
-        elif not self.music_manager.is_authenticated():
-            self.music_manager.login(
-                uploader_id=self.uploader_id, uploader_name=self.uploader_name
-            )
 
     def is_authenticated(self):
         return (
@@ -82,12 +61,26 @@ class GoogleMusicDatabase:
 
 def get_db():
     if "db" not in g:
+        mobile_credentials = (
+            json_to_credentials(
+                json.loads(request.headers["Mobile-Client-Authorization"])
+            )
+            if "Mobile-Client-Authorization" in request.headers
+            else None
+        )
+        manager_credentials = (
+            json_to_credentials(
+                json.loads(request.headers["Music-Manager-Authorization"])
+            )
+            if "Music-Manager-Authorization" in request.headers
+            else None
+        )
         g.db = GoogleMusicDatabase(
             device_id=current_app.config["DEVICE_ID"],
-            mobile_credentials=current_app.config.get("MOBILE_CREDENTIALS", None),
+            mobile_credentials=mobile_credentials,
             uploader_id=current_app.config.get("UPLOADER_ID", None),
             uploader_name=current_app.config.get("UPLOADER_NAME", None),
-            manager_credentials=current_app.config.get("MANAGER_CREDENTIALS", None),
+            manager_credentials=manager_credentials,
         )
 
     return g.db
@@ -102,3 +95,15 @@ def close_db(e=None):
 
 def init_app(app):
     app.teardown_appcontext(close_db)
+
+
+def json_to_credentials(json):
+    return oauth2client.client.OAuth2Credentials(
+        access_token=json["accessToken"],
+        client_id=json["clientId"],
+        client_secret=json["clientSecret"],
+        refresh_token=json["refreshToken"],
+        token_expiry=json["tokenExpiry"],
+        token_uri=json["tokenUri"],
+        user_agent=json["userAgent"],
+    )

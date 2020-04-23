@@ -1,4 +1,7 @@
+import json
+
 from pytest import fixture
+from werkzeug.datastructures import Headers
 
 from music_service.db import get_db
 
@@ -15,25 +18,6 @@ def test_connection_is_idempotent(app):
         assert get_db() is get_db()
 
 
-def test_connection_performs_oauth_on_first_time(app, monkeypatch):
-    mobile_client_recorder = CallRecorder()
-    music_manager_recorder = CallRecorder()
-
-    monkeypatch.setattr("os.path.exists", lambda path: False)
-    monkeypatch.setattr(
-        "gmusicapi.Mobileclient.perform_oauth", mobile_client_recorder.function
-    )
-    monkeypatch.setattr(
-        "gmusicapi.Musicmanager.perform_oauth", music_manager_recorder.function
-    )
-
-    with app.app_context():
-        get_db()
-
-        assert mobile_client_recorder.called
-        assert music_manager_recorder.called
-
-
 def test_connection_logs_in(app, monkeypatch):
     mobile_client_recorder = CallRecorder()
     music_manager_recorder = CallRecorder()
@@ -45,7 +29,22 @@ def test_connection_logs_in(app, monkeypatch):
     )
     monkeypatch.setattr("gmusicapi.Musicmanager.login", music_manager_recorder.function)
 
-    with app.app_context():
+    cred = json.dumps(
+        {
+            "accessToken": "",
+            "clientId": "",
+            "clientSecret": "",
+            "refreshToken": "",
+            "tokenExpiry": 0,
+            "tokenUri": "",
+            "userAgent": "",
+        }
+    )
+    with app.test_request_context(
+        headers=Headers(
+            {"Mobile-Client-Authorization": cred, "Music-Manager-Authorization": cred}
+        )
+    ):
         get_db()
 
         assert mobile_client_recorder.called

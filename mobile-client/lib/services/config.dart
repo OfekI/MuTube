@@ -61,36 +61,3 @@ class ConfigUtils {
     return AppConfig.fromJson(config);
   }
 }
-
-// class GraphQLProviderConfig extends StatelessWidget {
-//   GraphQLProviderConfig({this.child});
-
-//   final Widget child;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<AuthCredentialModel>(
-//         builder: (context, credentialModel, child) {
-//           final HttpLink httpLink = HttpLink(
-//             // uri: 'http://127.0.0.1:5000/graphql',
-//             uri: 'http://10.0.0.15:5000/graphql',
-//           );
-//           final AuthLink authLink = AuthLink(
-//             getToken: () => (credentialModel.credential as GoogleAuthCredential)
-//                 .accessToken,
-//           );
-//           final Link link = authLink.concat(httpLink);
-//           return GraphQLProvider(
-//             client: ValueNotifier(
-//               GraphQLClient(
-//                 link: link,
-//                 cache:
-//                     OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
-//               ),
-//             ),
-//             child: child,
-//           );
-//         },
-//         child: child);
-//   }
-// }

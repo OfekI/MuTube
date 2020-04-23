@@ -172,6 +172,22 @@ library = [
             }""",
             {"songs": [{"title": "Song 1"}, {"title": "Song 3"}]},
         ),
+        (
+            """{
+                songs(first: 1) {
+                    title
+                }
+            }""",
+            {"songs": [{"title": "Song 1"}]},
+        ),
+        (
+            """{
+                songs(skip: 1) {
+                    title
+                }
+            }""",
+            {"songs": [{"title": "Song 2"}, {"title": "Song 3"}]},
+        ),
     ],
 )
 def test_graphql_songs(query, expected, client, monkeypatch):
@@ -245,6 +261,22 @@ def test_graphql_songs(query, expected, client, monkeypatch):
             }""",
             [{"name": "Artist 1"}],
         ),
+        (
+            """{
+                artists(first: 1) {
+                    name
+                }
+            }""",
+            [{"name": "Artist 1"}],
+        ),
+        (
+            """{
+                artists(skip: 1) {
+                    name
+                }
+            }""",
+            [{"name": "Artist 2"}],
+        ),
     ],
 )
 def test_graphql_artists(query, expected, client, monkeypatch):
@@ -252,10 +284,7 @@ def test_graphql_artists(query, expected, client, monkeypatch):
         "gmusicapi.Mobileclient.get_all_songs", lambda *args: library,
     )
     response = client.post("/graphql", data={"query": query})
-    assert (
-        sorted(response.get_json()["data"]["artists"], key=lambda d: d["name"])
-        == expected
-    )
+    assert response.get_json()["data"]["artists"] == expected
 
 
 @mark.parametrize(
@@ -308,6 +337,22 @@ def test_graphql_artists(query, expected, client, monkeypatch):
             }""",
             [{"name": "Album 1"}],
         ),
+        (
+            """{
+                albums(first: 1) {
+                    name
+                }
+            }""",
+            [{"name": "Album 1"}],
+        ),
+        (
+            """{
+                albums(skip: 1) {
+                    name
+                }
+            }""",
+            [{"name": "Album 2"}],
+        ),
     ],
 )
 def test_graphql_albums(query, expected, client, monkeypatch):
@@ -315,7 +360,5 @@ def test_graphql_albums(query, expected, client, monkeypatch):
         "gmusicapi.Mobileclient.get_all_songs", lambda *args: library,
     )
     response = client.post("/graphql", data={"query": query})
-    assert (
-        sorted(response.get_json()["data"]["albums"], key=lambda d: d["name"])
-        == expected
-    )
+    assert response.get_json()["data"]["albums"] == expected
+

@@ -136,64 +136,31 @@ class RootQuery(graphene.ObjectType):
         graphene.List(lambda: graphene.NonNull(Song)),
         title=graphene.String(),
         search=graphene.String(),
+        first=graphene.Int(),
+        skip=graphene.Int(),
     )
     artists = graphene.NonNull(
         graphene.List(lambda: graphene.NonNull(Artist)),
         name=graphene.String(),
         search=graphene.String(),
+        first=graphene.Int(),
+        skip=graphene.Int(),
     )
     albums = graphene.NonNull(
         graphene.List(lambda: graphene.NonNull(Album)),
         name=graphene.String(),
         search=graphene.String(),
+        first=graphene.Int(),
+        skip=graphene.Int(),
     )
 
     @staticmethod
-    def resolve_songs(parent, info, title="", search=""):
-        return [
-            song
-            for song in db.get_db().get_songs()
-            if title.lower() in song["title"].lower()
-            and (
-                search.lower() in song["title"].lower()
-                or ("artist" in song and search.lower() in song["artist"].lower())
-                or (
-                    "albumArtist" in song
-                    and search.lower() in song["albumArtist"].lower()
-                )
-                or ("album" in song and search.lower() in song["album"].lower())
-            )
-        ]
-
-    @staticmethod
-    def resolve_artists(parent, info, name="", search=""):
-        return [
-            {"name": artist}
-            for artist in {
-                song["albumArtist"]
+    def resolve_songs(parent, info, title="", search="", first=None, skip=None):
+        songs = sorted(
+            [
+                song
                 for song in db.get_db().get_songs()
-                if "albumArtist" in song
-                and song["albumArtist"] != ""
-                and name.lower() in song["albumArtist"].lower()
-                and (
-                    search.lower() in song["title"].lower()
-                    or ("artist" in song and search.lower() in song["artist"].lower())
-                    or search.lower() in song["albumArtist"].lower()
-                    or ("album" in song and search.lower() in song["album"].lower())
-                )
-            }
-        ]
-
-    @staticmethod
-    def resolve_albums(parent, info, name="", search=""):
-        return [
-            {"name": album}
-            for album in {
-                song["album"]
-                for song in db.get_db().get_songs()
-                if "album" in song
-                and song["album"] != ""
-                and name.lower() in song["album"].lower()
+                if title.lower() in song["title"].lower()
                 and (
                     search.lower() in song["title"].lower()
                     or ("artist" in song and search.lower() in song["artist"].lower())
@@ -201,10 +168,82 @@ class RootQuery(graphene.ObjectType):
                         "albumArtist" in song
                         and search.lower() in song["albumArtist"].lower()
                     )
-                    or search.lower() in song["album"].lower()
+                    or ("album" in song and search.lower() in song["album"].lower())
                 )
-            }
-        ]
+            ],
+            key=lambda song: song["title"],
+        )
+        if skip != None:
+            songs = songs[skip:]
+        if first != None:
+            songs = songs[:first]
+
+        return songs
+
+    @staticmethod
+    def resolve_artists(parent, info, name="", search="", first=None, skip=None):
+        artists = sorted(
+            [
+                {"name": artist}
+                for artist in {
+                    song["albumArtist"]
+                    for song in db.get_db().get_songs()
+                    if "albumArtist" in song
+                    and song["albumArtist"] != ""
+                    and name.lower() in song["albumArtist"].lower()
+                    and (
+                        search.lower() in song["title"].lower()
+                        or (
+                            "artist" in song
+                            and search.lower() in song["artist"].lower()
+                        )
+                        or search.lower() in song["albumArtist"].lower()
+                        or ("album" in song and search.lower() in song["album"].lower())
+                    )
+                }
+            ],
+            key=lambda artist: artist["name"],
+        )
+        if skip != None:
+            artists = artists[skip:]
+        if first != None:
+            artists = artists[:first]
+
+        return artists
+
+    @staticmethod
+    def resolve_albums(parent, info, name="", search="", first=None, skip=None):
+        albums = sorted(
+            [
+                {"name": album}
+                for album in {
+                    song["album"]
+                    for song in db.get_db().get_songs()
+                    if "album" in song
+                    and song["album"] != ""
+                    and name.lower() in song["album"].lower()
+                    and (
+                        search.lower() in song["title"].lower()
+                        or (
+                            "artist" in song
+                            and search.lower() in song["artist"].lower()
+                        )
+                        or (
+                            "albumArtist" in song
+                            and search.lower() in song["albumArtist"].lower()
+                        )
+                        or search.lower() in song["album"].lower()
+                    )
+                }
+            ],
+            key=lambda album: album["name"],
+        )
+        if skip != None:
+            albums = albums[skip:]
+        if first != None:
+            albums = albums[:first]
+
+        return albums
 
 
 schema = graphene.Schema(query=RootQuery)
