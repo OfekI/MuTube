@@ -12,6 +12,13 @@ def create_app(test_config=None):
     app.config.from_mapping(SECRET_KEY="dev")
 
     # load the instance config, if it exists
+    app.config.from_mapping(
+        {
+            "DEVICE_ID": os.environ["DEVICE_ID"],
+            "UPLOADER_ID": os.environ["UPLOADER_ID"],
+            "UPLOADER_NAME": os.environ["UPLOADER_NAME"],
+        }
+    )
     app.config.from_pyfile(
         os.path.join(
             os.path.dirname(os.path.dirname(__file__)), "instance", "settings.cfg"
